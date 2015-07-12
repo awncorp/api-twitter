@@ -223,8 +223,8 @@ returned.
 
     my $user = $twitter->users('lookup');
 
-    $user->action; # GET   /users/lookup
-    $user->action('head'); # HEAD  /users/lookup
+    $user->action;          # GET /users/lookup
+    $user->action('head');  # HEAD /users/lookup
     $user->action('patch'); # PATCH /users/lookup
 
 Building up an HTTP request object is extremely easy, simply call method names

@@ -25,7 +25,7 @@ my %WriteMakefileArgs = (
     "Mojolicious" => "6.08",
     "Net::OAuth" => "0.28"
   },
-  "VERSION" => "0.01",
+  "VERSION" => "0.02",
   "test" => {
     "TESTS" => "t/*.t"
   }

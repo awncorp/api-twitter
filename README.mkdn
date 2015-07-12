@@ -6,7 +6,7 @@ API::Twitter - Perl 5 API wrapper for Twitter.com
 
 # VERSION
 
-version 0.01
+version 0.02
 
 # SYNOPSIS
 
@@ -52,8 +52,8 @@ returned.
 
     my $user = $twitter->users('lookup');
 
-    $user->action; # GET   /users/lookup
-    $user->action('head'); # HEAD  /users/lookup
+    $user->action;          # GET /users/lookup
+    $user->action('head');  # HEAD /users/lookup
     $user->action('patch'); # PATCH /users/lookup
 
 Building up an HTTP request object is extremely easy, simply call method names
