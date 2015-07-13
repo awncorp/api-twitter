@@ -16,13 +16,13 @@ $Net::OAuth::PROTOCOL_VERSION = Net::OAuth::PROTOCOL_VERSION_1_0A;
 has access_token => (
     is       => 'rw',
     isa      => Str,
-    required => 1,
+    required => 0,
 );
 
 has access_token_secret => (
     is       => 'rw',
     isa      => Str,
-    required => 1,
+    required => 0,
 );
 
 has identifier => (
@@ -41,6 +41,12 @@ has consumer_secret => (
     is       => 'rw',
     isa      => Str,
     required => 1,
+);
+
+has oauth_type => (
+    is       => 'rw',
+    isa      => Str,
+    default  => 'protected resource',
 );
 
 has version => (
@@ -99,7 +105,7 @@ method PREPARE ($ua, $tx, %args) {
 
     # oauth object
     my $base  = $url->clone; $base->query(undef);
-    my $oauth = Net::OAuth->request('protected resource')->new(%$params,
+    my $oauth = Net::OAuth->request($self->oauth_type)->new(%$params,
         version          => '1.0',
         consumer_key     => $consumer_key,
         consumer_secret  => $consumer_secret,
@@ -111,7 +117,8 @@ method PREPARE ($ua, $tx, %args) {
         token_secret     => $access_token_secret,
         nonce            => Digest::SHA::sha1_base64(time . $$ . rand),
     );
- 
+
+    # oauth signature
     $oauth->sign;
 
     # authorization header

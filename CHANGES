@@ -1,7 +1,8 @@
 Changelog for API-Twitter
 
-0.02 2015-07-12T05:14:04
- - No changes found
+0.02 2015-07-13T16:50:06
+ - Allow access to unprotected oauth resources.
+ - Fixed typos.
 
 0.01 2015-07-12T05:02:04
  - v0.01
