@@ -1,12 +1,12 @@
 # NAME
 
-API::Twitter - Perl 5 API wrapper for Twitter.com
+API::Twitter - Twitter.com API Client
 
-[![Build Status](https://travis-ci.org/AccessAbundant/API-Twitter.png?branch=master)](https://travis-ci.org/AccessAbundant/API-Twitter)
+[![Build Status](https://travis-ci.org/alnewkirk/API-Twitter.png?branch=master)](https://travis-ci.org/alnewkirk/API-Twitter)
 
 # VERSION
 
-version 0.02
+version 0.03
 
 # SYNOPSIS
 
@@ -35,166 +35,18 @@ version 0.02
 This distribution provides an object-oriented thin-client library for
 interacting with the Twitter ([http://twitter.com](http://twitter.com)) API. For usage and
 documentation information visit [https://dev.twitter.com/rest/public](https://dev.twitter.com/rest/public).
+API::Twitter is derived from [API::Client](https://metacpan.org/pod/API::Client) and inherits all of it's
+functionality. Please read the documentation for API::Client for more
+usage information.
 
-# THIN CLIENT
-
-A thin-client library is advantageous as it has complete API coverage and
-can easily adapt to changes in the API with minimal effort. As a thin-client
-library, this module does not map specific HTTP requests to specific routines,
-nor does it provide parameter validation, pagination, or other conventions
-found in typical API client implementations, instead, it simply provides a
-simple and consistent mechanism for dynamically generating HTTP requests.
-Additionally, this module has support for debugging and retrying API calls as
-well as throwing exceptions when 4xx and 5xx server response codes are
-returned.
-
-## Building
-
-    my $user = $twitter->users('lookup');
-
-    $user->action;          # GET /users/lookup
-    $user->action('head');  # HEAD /users/lookup
-    $user->action('patch'); # PATCH /users/lookup
-
-Building up an HTTP request object is extremely easy, simply call method names
-which correspond to the API's path segments in the resource you wish to execute
-a request against. This module uses autoloading and returns a new instance with
-each method call. The following is the equivalent:
-
-## Chaining
-
-    my $users = $twitter->resource('users');
-
-    # or
-
-    my $users = $twitter->users;
-    my $user  = $users->resource('lookup');
-
-    # then
-
-    $user->action('put', %args); # PUT /users/lookup
-
-Because each call returns a new API instance configured with a resource locator
-based on the supplied parameters, reuse and request isolation are made simple,
-i.e., you will only need to configure the client once in your application.
-
-## Fetching
-
-    my $users = $twitter->users;
-
-    # query-string parameters
-
-    $users->fetch( query => { ... } );
-
-    # equivalent to
-
-    my $users = $twitter->resource('users');
-
-    $users->action( get => ( query => { ... } ) );
-
-This example illustrates how you might fetch an API resource.
-
-## Creating
-
-    my $users = $twitter->users;
-
-    # content-body parameters
-
-    $users->create( data => { ... } );
-
-    # query-string parameters
-
-    $users->create( query => { ... } );
-
-    # equivalent to
-
-    $twitter->resource('users')->action(
-        post => ( query => { ... }, data => { ... } )
-    );
-
-This example illustrates how you might create a new API resource.
-
-## Updating
-
-    my $users = $twitter->users;
-    my $user  = $users->resource('lookup');
-
-    # content-body parameters
-
-    $user->update( data => { ... } );
-
-    # query-string parameters
-
-    $user->update( query => { ... } );
-
-    # or
-
-    my $user = $twitter->users('lookup');
-
-    $user->update( ... );
-
-    # equivalent to
-
-    $twitter->resource('users')->action(
-        put => ( query => { ... }, data => { ... } )
-    );
-
-This example illustrates how you might update a new API resource.
-
-## Deleting
-
-    my $users = $twitter->users;
-    my $user  = $users->resource('lookup');
-
-    # content-body parameters
-
-    $user->delete( data => { ... } );
-
-    # query-string parameters
-
-    $user->delete( query => { ... } );
-
-    # or
-
-    my $user = $twitter->users('lookup');
-
-    $user->delete( ... );
-
-    # equivalent to
-
-    $twitter->resource('users')->action(
-        delete => ( query => { ... }, data => { ... } )
-    );
-
-This example illustrates how you might delete an API resource.
-
-## Transacting
-
-    my $users = $twitter->resource('users', 'lookup');
-
-    my ($results, $transaction) = $users->action( ... );
-
-    my $request  = $transaction->req;
-    my $response = $transaction->res;
-
-    my $headers;
-
-    $headers = $request->headers;
-    $headers = $response->headers;
-
-    # etc
-
-This example illustrates how you can access the transaction object used
-represent and process the HTTP transaction.
-
-# PARAMETERS
+# ATTRIBUTES
 
 ## access\_token
 
     $twitter->access_token;
     $twitter->access_token('ACCESS_TOKEN');
 
-The access\_token parameter should be set to an API access\_token associated with
+The access\_token attribute should be set to an API access\_token associated with
 your account.
 
 ## access\_token\_secret
@@ -202,7 +54,7 @@ your account.
     $twitter->access_token_secret;
     $twitter->access_token_secret('ACCESS_TOKEN_SECRET');
 
-The access\_token\_secret parameter should be set to an API access\_token\_secret
+The access\_token\_secret attribute should be set to an API access\_token\_secret
 associated with your account.
 
 ## consumer\_key
@@ -210,7 +62,7 @@ associated with your account.
     $twitter->consumer_key;
     $twitter->consumer_key('CONSUMER_KEY');
 
-The consumer\_key parameter should be set to an API consumer\_key associated with
+The consumer\_key attribute should be set to an API consumer\_key associated with
 your account.
 
 ## consumer\_secret
@@ -218,7 +70,7 @@ your account.
     $twitter->consumer_secret;
     $twitter->consumer_secret('CONSUMER_SECRET');
 
-The consumer\_secret parameter should be set to an API consumer\_secret
+The consumer\_secret attribute should be set to an API consumer\_secret
 associated with your account.
 
 ## identifier
@@ -226,9 +78,7 @@ associated with your account.
     $twitter->identifier;
     $twitter->identifier('IDENTIFIER');
 
-The identifier parameter should be set to a string that identifies your app.
-
-# ATTRIBUTES
+The identifier attribute should be set to a string that identifies your app.
 
 ## debug
 

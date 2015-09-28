@@ -1,10 +1,13 @@
 Changelog for API-Twitter
 
-0.02 2015-07-13T16:54:08
+0.03 2015-09-28T03:47:15
+ - Refactored to derive from API::Client.
+
+0.02 2015-07-13T16:54:40
+ - v0.02
  - Allow access to unprotected oauth resources.
  - Fixed typos.
 
 0.01 2015-07-12T05:02:04
  - v0.01
  - Initial commit.
-

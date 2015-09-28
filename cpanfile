@@ -1,13 +1,12 @@
-requires "Data::Object" => "0.20";
-requires "Data::Object::Library" => "0.05";
-requires "Data::Object::Signatures" => "0.03";
-requires "Import::Into" => "1.002004";
-requires "Mojolicious" => "6.08";
+requires "API::Client" => "0.01";
+requires "Data::Object" => "0.55";
+requires "Mojolicious" => "6.22";
 requires "Net::OAuth" => "0.28";
-requires "perl" => "v5.14.2";
+requires "namespace::autoclean" => "0.27";
+requires "perl" => "v5.14.0";
 
 on 'test' => sub {
-  requires "perl" => "v5.14.2";
+  requires "perl" => "v5.14.0";
 };
 
 on 'configure' => sub {
