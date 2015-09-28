@@ -236,7 +236,7 @@ The debug attribute if true prints HTTP requests and responses to standard out.
     $twitter->fatal(1);
 
 The fatal attribute if true promotes 4xx and 5xx server response codes to
-exceptions, a L<API::Twitter::Exception> object.
+exceptions, a L<API::Client::Exception> object.
 
 =cut
 
