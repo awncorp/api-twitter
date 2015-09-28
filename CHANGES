@@ -1,6 +1,11 @@
 Changelog for API-Twitter
 
-0.03 2015-09-28T04:06:18
+0.04 2015-09-28T13:10:19
+ - Updated inconsistency in documentation.
+ - Updated dist.ini to generate META files.
+
+0.03 2015-09-28T04:06:26
+ - v0.03
  - Updated build.
  - Refactored to derive from API::Client.
 

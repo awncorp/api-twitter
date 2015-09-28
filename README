@@ -4,7 +4,7 @@ NAME
 
 VERSION
 
-    version 0.03
+    version 0.04
 
 SYNOPSIS
 
@@ -93,7 +93,7 @@ ATTRIBUTES
         $twitter->fatal(1);
 
     The fatal attribute if true promotes 4xx and 5xx server response codes
-    to exceptions, a API::Twitter::Exception object.
+    to exceptions, a API::Client::Exception object.
 
  retries
 

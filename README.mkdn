@@ -6,7 +6,7 @@ API::Twitter - Twitter.com API Client
 
 # VERSION
 
-version 0.03
+version 0.04
 
 # SYNOPSIS
 
@@ -93,7 +93,7 @@ The debug attribute if true prints HTTP requests and responses to standard out.
     $twitter->fatal(1);
 
 The fatal attribute if true promotes 4xx and 5xx server response codes to
-exceptions, a [API::Twitter::Exception](https://metacpan.org/pod/API::Twitter::Exception) object.
+exceptions, a [API::Client::Exception](https://metacpan.org/pod/API::Client::Exception) object.
 
 ## retries
 
