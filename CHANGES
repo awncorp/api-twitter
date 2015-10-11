@@ -1,6 +1,7 @@
 Changelog for API-Twitter
 
-0.05 2015-10-11T08:06:55
+0.05 2015-10-11T08:09:46
+ - Updated build.
  - Modified the implementation style and dependencies.
 
 0.04 2015-09-28T13:18:04
