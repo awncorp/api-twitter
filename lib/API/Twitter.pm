@@ -1,14 +1,13 @@
 # ABSTRACT: Twitter.com API Client
 package API::Twitter;
 
-use namespace::autoclean -except => 'has';
-
 use Data::Object::Class;
-use Data::Object::Class::Syntax;
 use Data::Object::Signatures;
 
-use Data::Object qw(load);
-use Data::Object::Library qw(Str);
+use Data::Object::Library qw(
+    Str
+);
+
 use Net::OAuth ();
 
 extends 'API::Client';
@@ -23,30 +22,58 @@ $Net::OAuth::PROTOCOL_VERSION = Net::OAuth::PROTOCOL_VERSION_1_0A;
 
 # ATTRIBUTES
 
-has consumer_key        => rw;
-has consumer_secret     => rw;
-has access_token        => rw;
-has access_token_secret => rw;
-has oauth_type          => rw;
+has consumer_key => (
+    is       => 'ro',
+    isa      => Str,
+    required => 1,
+);
 
-# CONSTRAINTS
+has consumer_secret => (
+    is       => 'rw',
+    isa      => Str,
+    required => 1,
+);
 
-req consumer_key        => Str;
-req consumer_secret     => Str;
-opt access_token        => Str;
-opt access_token_secret => Str;
-opt oauth_type          => Str;
+has access_token => (
+    is       => 'rw',
+    isa      => Str,
+    required => 0,
+);
+
+has access_token_secret => (
+    is       => 'rw',
+    isa      => Str,
+    required => 0,
+);
+
+has oauth_type => (
+    is       => 'rw',
+    isa      => Str,
+    default  => 'protected resource',
+    required => 0,
+);
 
 # DEFAULTS
 
-def identifier => 'API::Twitter (Perl)';
-def oauth_type => 'protected resource';
-def url        => method { load('Mojo::URL')->new($DEFAULT_URL) };
-def version    => '1.1';
+has '+identifier' => (
+    default  => 'API::Twitter (Perl)',
+    required => 0,
+);
+
+has '+url' => (
+    default  => $DEFAULT_URL,
+    required => 0,
+);
+
+has '+version' => (
+    default  => 1.1,
+    required => 0,
+);
 
 # CONSTRUCTION
 
 after BUILD => method {
+
     my $identifier = $self->identifier;
     my $version    = $self->version;
     my $agent      = $self->user_agent;
@@ -57,11 +84,13 @@ after BUILD => method {
     $url->path("/$version");
 
     return $self;
+
 };
 
 # METHODS
 
 method PREPARE ($ua, $tx, %args) {
+
     my $req     = $tx->req;
     my $headers = $req->headers;
     my $params  = $req->params->to_hash;
@@ -107,9 +136,11 @@ method PREPARE ($ua, $tx, %args) {
 
     # authorization header
     $headers->header('Authorization' => $oauth->to_authorization_header);
+
 }
 
 method resource (@segments) {
+
     # build new resource instance
     my $instance = __PACKAGE__->new(
         debug               => $self->debug,
@@ -133,6 +164,7 @@ method resource (@segments) {
 
     # return resource instance
     return $instance;
+
 }
 
 1;
