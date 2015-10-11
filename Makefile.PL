@@ -18,13 +18,12 @@ my %WriteMakefileArgs = (
   "MIN_PERL_VERSION" => "5.014000",
   "NAME" => "API::Twitter",
   "PREREQ_PM" => {
-    "API::Client" => "0.01",
-    "Data::Object" => "0.55",
+    "API::Client" => "0.03",
+    "Data::Object" => "0.57",
     "Mojolicious" => "6.22",
-    "Net::OAuth" => "0.28",
-    "namespace::autoclean" => "0.27"
+    "Net::OAuth" => "0.28"
   },
-  "VERSION" => "0.04",
+  "VERSION" => "0.05",
   "test" => {
     "TESTS" => "t/*.t"
   }
@@ -32,12 +31,11 @@ my %WriteMakefileArgs = (
 
 
 my %FallbackPrereqs = (
-  "API::Client" => "0.01",
-  "Data::Object" => "0.55",
+  "API::Client" => "0.03",
+  "Data::Object" => "0.57",
   "ExtUtils::MakeMaker" => 0,
   "Mojolicious" => "6.22",
-  "Net::OAuth" => "0.28",
-  "namespace::autoclean" => "0.27"
+  "Net::OAuth" => "0.28"
 );
 
 

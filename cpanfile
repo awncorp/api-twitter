@@ -1,8 +1,7 @@
-requires "API::Client" => "0.01";
-requires "Data::Object" => "0.55";
+requires "API::Client" => "0.03";
+requires "Data::Object" => "0.57";
 requires "Mojolicious" => "6.22";
 requires "Net::OAuth" => "0.28";
-requires "namespace::autoclean" => "0.27";
 requires "perl" => "v5.14.0";
 
 on 'test' => sub {
